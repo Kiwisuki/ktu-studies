@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "surfshark-analytics",
+  "private_key_id": "7bbe3ae768fd92fc9aca901e3b5c0bc4acd35c45",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyHCy8G9wH5yNO\nan5RfDioeh671KPD/IoyArg2V3zCPCj/mgbJ+CA0qPZyu516J2H0Y8DZG9BXlpFQ\nnc5O61LI9q8DlKhFeHUyAAmDL8kL5GytpZyLF/OIfDa5/PMNST/S2/pASlJ5Aw9W\nk9N5inWt3CxjS60ItKTfCqHLqIfLY+FIE1E4PZM/7tMU2kVFkXEousM/Sx3cs/+R\nf42VkwAVW+kOTqt8hY9756BFNrO0kdZ29C13gzpnJ5N9wVcs/ZjuR2P7WdZ5LgcQ\nh/rrnFSfjuL3Wo8dMFsIvHjJYETNsnJs5OERjitWzehbjY+aDs4Kk8nW0cXq2S/+\nMIhHHzR1AgMBAAECggEAIYzPHGv/CXoPm4DR5JWKsqm2Sllms89JVNxQSOQ3+vqM\nGoGwD7Ful5zQN5KBunXarMdxlzP3Ddit7MqdBx6qzHIzS3BgNh3XraB2KkEBFP1l\nP1x33XeYhzgmsugj/He0zwpi3GNjn6nk5MEZz8Y2HpbfwaCKqp4khGMjURKg6b3I\n048UOqEYiLMNfuae8MFXsqeB9v9TkGTyw+s09XyHnLAsXJa4SWS3Ij9pLN2tZG2z\n7omIgUapQJxo5zS4Np4DcTj0AYp/AJyq+hRozD0byOzeCO9hfCPX74oNSWfjFcz2\nZq8n5S0xEhc+Dw09uKQr6+nISYGg4wVI+KoQ4lFZTQKBgQDtxEoS+G9kdtNM6VaM\nv1RXvRO35Al2O1okYc9k9Am1EPbL1Ib6PkdLil8y/8gRDIAisjDktrQThrfZuhcC\nHYvAoD4Zxl4BNht2Ge+lktxhcTQLA0uHwwpr9cXRfNFzZ79DvgDJmQ+ZZF/8Xxw4\n+iLCxzQ+FEy13Z67o4whzuJwLwKBgQC/xLyeXzcmmUE4XX0WlIqa9yrwws/L19Zr\nv2WnF6pogDiMjDAQobLRZG0WJhSmzT+14Pn3l4nw6bvR/ka+azOse3vg6gzONYm6\n+2CYMJV60m8wAeG653xYDuuFclENdaBQA9w4ZPVOS+yktNoWHSfmg+SCIb8ZCcL8\n7g/OqnU4mwKBgB9iuNB2QOYHFW9ioc0keHK4f8DXdjRIM2b4DlNqL1naammPnV2t\nGOYs1tI5l2RAvS1XTkLypySotN4lxWG/GrKLtIbce443YTqew9acY0Dtm4wUnETI\nhzinEbzMeC1+tW2wyBPUg42hBVagC26t/iat+wRy04lyPsDQHvBbieJ7AoGALa60\nMBYGkU9Y1hCPR93C1v+iXxBJaAnWrnw9vvxIP/Srg++xU4TxkCgYRHp12PZ0AuPB\nKFYVKirD71Zfi+UFvkT8UavvuP/P+5b+f8KzGTsf+ZO5LkkOuftz56o/3LD0q5r/\nzv9d4HT9vo7GlRYE90jcGpPnbhOBO7eKVHUOz5kCgYEAsZl59rr29FNYahJvPyh9\ngwpJJy3GnMoiXFdu6v1LWyth+hADaeQy/xQE4ji4Au9vtYecL27v5nVCc+qmKhg3\nzW762PqEe25tODTzVDoPH+3WHTzAeYQ495Mlb3qVuU8SeirwoRLXOOAG7bHoGeJN\nbGv24eoce0stHt5ELoERwd8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "marius-arlauskas-929@surfshark-analytics.iam.gserviceaccount.com",
+  "client_id": "104723989930292991417",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/marius-arlauskas-929%40surfshark-analytics.iam.gserviceaccount.com"
+}
