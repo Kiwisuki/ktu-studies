@@ -1,0 +1,208 @@
+/* Marius Arlauskas MGDMI-0 */
+
+/* 1 dalis */
+
+/* 1 uzduotis */
+
+data dispn;
+infile '/home/u62272156/lab3/AutoDISP.dat';
+input modelis $1-37 b100km 38-41 cilindrai 42-43 turis 48-51 galia 55-57 svoris 63-66 laikas 67-70 metai 74-75 regionas $76-83;
+if _N_ in (2:392) then output;
+run;
+proc sort data=dispn;
+by modelis;
+run;
+data faktoriai;
+set dispn;
+factorA=cilindrai;
+factorB=regionas;
+Y=laikas;
+run;
+
+/* 2 uzduotis */
+
+proc freq data = faktoriai;
+table factorA*factorB;
+
+proc means data = faktoriai mean var min max;
+class factorA factorB;
+var Y;
+run;
+
+/* 3-6 uzduotis */
+
+proc GLM data = faktoriai alpha=0.05
+	plots=(diagnostics)
+	plots=meanplot(CL)
+	plots=intplot(CLM)
+	;
+CLASS factorA factorB;
+model Y= factorA factorB factorA*factorB / SS3 EFFECTSIZE;
+run;
+MEANS factorA / ALPHA=0.05 TUKEY DUNNETT LINES CLDIFF;
+LSMEANS factorA factorB factorA*factorB / alpha=0.05 adjust=TUKEY CL PLOT=DIFFPLOT;
+output out=mtest student=s_r1;
+run;
+
+
+/* 2 dalis */
+
+/* 1 uzduotis */
+data REG2;
+infile '/home/u62272156/lab3/Labreg2.dat';
+input X 1-8 Y1 10-20 Y2 22-32 Y3 34-44;
+run;
+proc print data=REG2;
+run;
+
+/* 2 uzduotis */
+proc sgplot data=REG2;
+title 'Tasku sklaidos diagrama X su Y1';
+scatter x=X y=Y1;
+run;
+
+proc sgplot data=REG2;
+title 'Tasku sklaidos diagrama X su Y2';
+scatter x=X y=Y2;
+run;
+
+proc sgplot data=REG2;
+title 'Tasku sklaidos diagrama X su Y3';
+scatter x=X y=Y3;
+run;
+
+/* Istiesinimo metodas */
+data REG;
+set REG2;
+log_Y1 = log(Y1);
+Y2_2 = Y2**2;
+run;
+
+
+proc sgplot data=REG;
+title 'Istiesinta tasku sklaidos diagrama X su Y1';
+scatter x=X y=log_Y1;
+run;
+
+proc sgplot data=REG;
+title 'Istiesinta tasku sklaidos diagrama X su Y2';
+scatter x=X y=Y2_2;
+run;
+
+/* koreliacine analize */
+proc corr data=reg
+nomiss pearson spearman plots=matrix(histogram);
+var X log_Y1 Y2_2 Y3;
+Title "Koreliacine analize";
+run;
+
+/* modelis regresuot Y1 */
+
+proc reg data=REG;
+model X=log_Y1 /spec DW DWPROB clb clm cli;
+output out=resdat r=resid p=pred;
+Title "Regression X=log_Y1";
+run;
+
+proc univariate data=resdat normal plot;
+var resid;
+Title 'Test of Normality of residuals';
+ods select TestsForNormality;
+run;
+
+/* modelis regresuot Y2_2 pagal X */
+proc reg data=REG;
+model Y2_2 = X / spec DW DWPROB clb clm cli;
+output out=resdat r=resid p=pred;
+Title "Regression X=Y2_2";
+run;
+
+proc univariate data=resdat normal plot;
+var resid;
+Title 'Test of Normality of residuals';
+ods select TestsForNormality;
+run;
+
+/* modelis regresuot Y3 pagal X */
+proc reg data=REG;
+model Y3 = X / spec DW DWPROB clb clm cli;
+output out=resdat r=resid p=pred;
+Title "Regression X=Y3";
+run;
+
+proc univariate data=resdat normal plot;
+var resid;
+Title 'Test of Normality of residuals';
+ods select TestsForNormality;
+run;
+
+/* 7 uzduotis */
+data prognozavimas;
+set REG;
+run;
+proc reg data=prognozavimas;
+model X = log_Y1 Y2_2 Y3 / CLB CLM CLI;
+run;
+
+
+/* 8 uzduotis */
+libname LD '/home/u62272156/lab3';
+run;
+data astuntas;
+set LD.lab3_dra;
+if _N_ in (1:20 50:1500) then output;
+run;
+/* grafikai */
+
+proc sgplot data=astuntas_1;
+title 'x1 ir y';
+scatter x=x1 y=y;
+run;
+
+proc sgplot data=astuntas_1;
+title 'x2 ir y';
+scatter x=x2 y=y;
+run;
+
+proc sgplot data=astuntas_1;
+title 'x3 ir y';
+scatter x=x3 y=y;
+run;
+
+proc sgplot data=astuntas_1;
+title 'x4 ir y';
+scatter x=x4 y=y;
+run;
+
+proc sgplot data=astuntas_1;
+title 'x5 ir y';
+scatter x=x5 y=y;
+run;
+
+proc sgplot data=astuntas_1;
+title 'c1 ir y';
+scatter x=c1 y=y;
+run;
+
+/* yra dvi isskirtys, jas reikia pasalinti */
+
+data astuntas_1;
+    set astuntas;
+    if y > 300 then delete;
+run;
+
+
+/* koreliacine analize */
+proc corr data=astuntas_1
+nomiss pearson spearman plots=matrix(histogram);
+var x1 x2 x3 x4 x5 y c1;
+Title "Koreliacine analize";
+run;
+
+/* modelis regresuot Y1 */
+/* x4 ir x5 koreliuoti su kitais kintamaisiais, nenaudojam ju, isimtos isskirtys */
+proc reg data=astuntas_1;
+model y=x3 x1 c1 x2 /spec DW DWPROB clb clm cli;
+output out=resdat r=resid p=pred;
+Title "Regression astuntas";
+run;
